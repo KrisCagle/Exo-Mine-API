@@ -1,4 +1,4 @@
-public class minerals
+public class mineral
 {
     public int Id { get; set; }
 
