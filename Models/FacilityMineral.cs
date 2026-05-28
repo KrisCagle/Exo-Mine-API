@@ -1,11 +1,12 @@
-public class facilityMineral
+namespace examineAPI.Models;
+public class FacilityMineral
 {
     public int Id { get; set; }
 
-    public int facilityId { get; set; }
+    public int FacilityId { get; set; }
 
-    public int mineralId { get; set; }
+    public int MineralId { get; set; }
 
-    public int quantity { get; set; }
+    public int Quantity { get; set; }
 
 }

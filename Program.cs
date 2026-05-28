@@ -1,189 +1,187 @@
-List<facilityMineral> facilityMinerals = new List <facilityMineral>();
+using examineAPI.Models;
+using examineAPI.Models.DTOs;
+List<FacilityMineral> facilityMinerals = new()
 {
-    new facilityMineral()
+    new FacilityMineral()
         {
             Id = 1,
-            facilityId = 1,
-            mineralId = 1,
-            quantity = 307
-        };
-    new facilityMineral()
+            FacilityId = 1,
+            MineralId = 1,
+            Quantity = 307
+        },
+    new FacilityMineral()
         {
             Id = 2,
-            facilityId = 1,
-            mineralId = 2,
-            quantity = 0
-        };
-    new facilityMineral()
+            FacilityId = 1,
+            MineralId = 2,
+            Quantity = 0
+        },
+    new FacilityMineral()
         {
             Id = 3,
-            facilityId = 2,
-            mineralId = 4,
-            quantity = 647
-        };
-    new facilityMineral()
+            FacilityId = 2,
+            MineralId = 4,
+            Quantity = 647
+        },
+    new FacilityMineral()
         {
             Id = 4,
-            facilityId = 3,
-            mineralId = 3,
-            quantity = 868
-        };
-}
+            FacilityId = 3,
+            MineralId = 3,
+            Quantity = 868
+        }
+};
 
-List<governor> governors = new List<governor>();
+List<Governor> governors = new()
     {
-        new governor()
+        new Governor()
         {
             Id = 1,
             Name = "Patricia Purdy",
-            colonyId = 1,
-            status = true
-        };
-        new governor()
-        {
-            Id = 1,
-            Name = "Patricia Purdy",
-            colonyId = 1,
-            status = true
-        };
-        new governor()
+            ColonyId = 1,
+            Status = true
+        },
+        new Governor()
         {
             Id = 2,
             Name = "Katrina Bahringer",
-            colonyId = 2,
-            status = true
-        };
-        new governor()
+            ColonyId = 2,
+            Status = true
+        },
+        new Governor()
         {
             Id = 3,
             Name = "Lola Wolff",
-            colonyId = 3,
-            status = true
-        };
-        new governor()
+            ColonyId = 3,
+            Status = true
+        },
+        new Governor()
         {
             Id = 4,
             Name = "Damon Hartman",
-            colonyId = 1,
-            status = true
-        };
+            ColonyId = 1,
+            Status = true
+        }
+    };
+
+List<Colony> colonies = new()
+{
+    new Colony()
+    {
+        Id = 1, 
+        Name = "Earth"
+    },
+    new Colony()
+    {
+        Id = 1, 
+        Name = "Mars"
+    },
+    new Colony()
+    {
+        Id = 1, 
+        Name = "Europa"
     }
+};
 
-List<colony> colonies = new List <colony>();
+List<Mineral> minerals = new()
 {
-    new colony()
-    {
-        Id = 1, 
-        Name = "Earth"};
-    new colony()
-    {
-        Id = 1, 
-        Name = "Mars"};
-    new colony()
-    {
-        Id = 1, 
-        Name = "Europa"};
-}
-
-List<mineral> minerals = new List <mineral>();
-{
-        new mineral()
+        new Mineral()
         {
             Id = 1,
-            name = "Iron"
-        };
-        new mineral()
+            Name = "Iron"
+        },
+        new Mineral()
         {
             Id = 2,
-            name = "Chromium"
-        };
-        new mineral()
+            Name = "Chromium"
+        },
+        new Mineral()
         {
             Id = 3,
-            name = "Sodium"
-        };
-        new mineral()
+            Name = "Sodium"
+        },
+        new Mineral()
         {
             Id = 4,
-            name = "Molybdenum"
-        };
+            Name = "Molybdenum"
+        }
     
-}
+};
 
-List<facilities> facilities = new List<facilities>();
+List<Facilities> facilities = new()
 {
-        new facilities()
+        new Facilities()
         {
             Id = 1,
             Name = "Ganymede",
-            status = true
-        };
-        new facilities()
+            Status = true
+        },
+        new Facilities()
         {
             Id = 2,
             Name = "Io",
-            status = true
-        };
-        new facilities()
+            Status = true
+        },        
+        new Facilities()
         {
             Id = 3,
             Name = "Titan",
-            status = true
-        };    
-}
+            Status = true
+        },    
+};
 
- List<colonyMinerals> colonyMinerals = new List<colonyMinerals>();
+ List<ColonyMinerals> colonyMinerals = new()
 {
-         new colonyMinerals()
+         new ColonyMinerals()
          {
              Id = 1,
-             colonyId = 2,
-             mineralId = 4,
-             quantity = 7
-         };
-         new colonyMinerals()
+             ColonyId = 2,
+             MineralId = 4,
+             Quantity = 7
+         },
+         new ColonyMinerals()
          {
              Id = 2,
-             colonyId = 2,
-             mineralId = 1,
-             quantity = 3
-         };
-         new colonyMinerals()
+             ColonyId = 2,
+             MineralId = 1,
+             Quantity = 3
+         },
+         new ColonyMinerals()
          {
              Id = 3,
-             colonyId = 2,
-             mineralId = 2,
-             quantity = 5
-         };
-         new colonyMinerals()
+             ColonyId = 2,
+             MineralId = 2,
+             Quantity = 5
+         },
+         new ColonyMinerals()
          {
              Id = 4,
-             colonyId = 2,
-             mineralId = 3,
-             quantity = 4
-         };
-         new colonyMinerals()
+             ColonyId = 2,
+             MineralId = 3,
+             Quantity = 4
+         },
+         new ColonyMinerals()
          {
              Id = 5,
-             colonyId = 1,
-             mineralId = 1,
-             quantity = 21
-         };
-         new colonyMinerals()
+             ColonyId = 1,
+             MineralId = 1,
+             Quantity = 21
+         },
+         new ColonyMinerals()
          {
              Id = 6,
-             colonyId = 1,
-             mineralId = 2,
-             quantity = 10
-         };
-         new colonyMinerals()
+             ColonyId = 1,
+             MineralId = 2,
+             Quantity = 10
+         },
+         new ColonyMinerals()
          {
              Id = 7,
-             colonyId = 1,
-             mineralId = 3,
-             quantity = 12
-         };
-}
+             ColonyId = 1,
+             MineralId = 3,
+             Quantity = 12
+         }
+};
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -199,5 +197,35 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapGet("api/colonyMinerals", () =>
+{
+    return colonyMinerals.Select(cm => new ColonyMineralsDTO
+    {
+        Id = cm.Id,
+        ColonyId = cm.ColonyId,
+        MineralId = cm.MineralId,
+        Quantity = cm.Quantity 
+
+    });
+});
+
+app.MapPut("/api/colonyMinerals/{id}", (int id, ColonyMineralsDTO updatedMineral) =>
+{
+    ColonyMinerals colonyMineral = colonyMinerals.FirstOrDefault(cm => cm.Id == id);
+    if (colonyMineral == null)
+    {
+        return Results.NotFound();
+    }
+    return Results.Ok(new ColonyMineralsDTO
+    {
+        Id = colonyMineral.Id,
+        ColonyId = colonyMineral.ColonyId,
+        MineralId = colonyMineral.MineralId,
+        Quantity = colonyMineral.Quantity
+    });
+});
+
+
 
 app.Run();

@@ -1,4 +1,5 @@
-public class colonyDTO
+namespace examineAPI.Models.DTOs;
+public class ColonyDTO
 {
     public int Id { get; set; }
 

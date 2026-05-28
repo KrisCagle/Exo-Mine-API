@@ -1,4 +1,5 @@
-public class colony
+namespace examineAPI.Models;
+public class Colony
 {
     public int Id { get; set; }
 

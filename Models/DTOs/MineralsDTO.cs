@@ -1,4 +1,5 @@
-public class mineralDTO
+namespace examineAPI.Models.DTOs;
+public class MineralDTO
 {
     public int Id { get; set; }
 
