@@ -73,12 +73,12 @@ List<Colony> colonies = new()
     },
     new Colony()
     {
-        Id = 1, 
+        Id = 2, 
         Name = "Mars"
     },
     new Colony()
     {
-        Id = 1, 
+        Id = 3, 
         Name = "Europa"
     }
 };
@@ -183,10 +183,13 @@ List<Facilities> facilities = new()
          }
 };
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -196,9 +199,17 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.UseCors(policy => policy
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+);
+
+
 app.UseHttpsRedirection();
 
-app.MapGet("api/colonyMinerals", () =>
+
+app.MapGet("/api/colonyMinerals", () =>
 {
     return colonyMinerals.Select(cm => new ColonyMineralsDTO
     {
@@ -217,15 +228,115 @@ app.MapPut("/api/colonyMinerals/{id}", (int id, ColonyMineralsDTO updatedMineral
     {
         return Results.NotFound();
     }
+     
+        colonyMineral.ColonyId = updatedMineral.ColonyId;
+        colonyMineral.MineralId = updatedMineral.MineralId;
+        colonyMineral.Quantity = updatedMineral.Quantity;   
+        
     return Results.Ok(new ColonyMineralsDTO
+    {
+        Id = colonyMineral.Id,
+        ColonyId = updatedMineral.ColonyId,
+        MineralId = updatedMineral.MineralId,
+        Quantity = updatedMineral.Quantity   
+    });
+});
+
+app.MapPost("/api/colonyMinerals/", (ColonyMinerals colonyMineral) =>
+{
+    colonyMineral.Id = colonyMinerals.Any() ? colonyMinerals.Max(cm => cm.Id) + 1 : 1;
+    colonyMinerals.Add(colonyMineral);
+    return Results.Created($"/api/colonyMinerals/{colonyMineral.Id}", new ColonyMineralsDTO
     {
         Id = colonyMineral.Id,
         ColonyId = colonyMineral.ColonyId,
         MineralId = colonyMineral.MineralId,
-        Quantity = colonyMineral.Quantity
+        Quantity = colonyMineral.Quantity 
+    });
+});
+
+app.MapGet("/api/facilityMinerals", () =>
+{
+    return facilityMinerals.Select(fm => new FacilityMineralDTO
+    {
+        Id = fm.Id,
+        FacilityId = fm.FacilityId,
+        MineralId = fm.MineralId,
+        Quantity = fm.Quantity,
+        Mineral = minerals.FirstOrDefault(m => m.Id == fm.MineralId),
+        Facility = facilities.FirstOrDefault(f => f.Id == fm.FacilityId)
+    });
+});
+
+app.MapPut("/api/facilityMinerals/{id}", ( 
+    int id, 
+    FacilityMineralDTO updatedFacilityMineral) =>
+{
+    FacilityMineral facilityMineral = facilityMinerals.FirstOrDefault(fm => fm.Id == id);
+    if (facilityMineral == null)
+    {
+        return Results.NotFound();
+    }
+
+    facilityMineral.FacilityId = updatedFacilityMineral.FacilityId;
+    facilityMineral.MineralId = updatedFacilityMineral.MineralId;
+    facilityMineral.Quantity = updatedFacilityMineral.Quantity;
+
+    return Results.Ok(new FacilityMineralDTO
+    {
+        Id = facilityMineral.Id,
+        FacilityId = facilityMineral.FacilityId,
+        MineralId = facilityMineral.MineralId,
+        Quantity = facilityMineral.Quantity
+    });
+
+});
+
+app.MapGet("/api/governors", () =>
+{
+    return governors.Select(g => new GovernorDTO
+    {
+        Id = g.Id,
+        ColonyId = g.ColonyId,
+        Name = g.Name,
+        Status = g.Status 
+
+    });
+});
+
+
+app.MapGet("/api/facilities", () =>
+{
+    return facilities.Select(f => new FacilitiesDTO
+    {
+        Id = f.Id,
+        Name = f.Name,
+        Status = f.Status 
+
+    });
+});
+
+
+app.MapGet("/api/colonies", () =>
+{
+    return colonies.Select(c => new ColonyDTO
+    {
+        Id = c.Id,
+        Name = c.Name,
+    });
+});
+app.MapGet("/api/minerals", () =>
+{
+    return minerals.Select(m => new MineralDTO
+    {
+        Id = m.Id,
+        Name = m.Name,
     });
 });
 
 
 
+
+
 app.Run();
+
