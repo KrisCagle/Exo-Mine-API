@@ -7,28 +7,32 @@ List<FacilityMineral> facilityMinerals = new()
             Id = 1,
             FacilityId = 1,
             MineralId = 1,
-            Quantity = 307
+            Quantity = 307,
+            ProductionRate = 1
         },
     new FacilityMineral()
         {
             Id = 2,
             FacilityId = 1,
             MineralId = 2,
-            Quantity = 0
+            Quantity = 0,
+            ProductionRate = 5
         },
     new FacilityMineral()
         {
             Id = 3,
             FacilityId = 2,
             MineralId = 4,
-            Quantity = 647
+            Quantity = 647,
+            ProductionRate = 2
         },
     new FacilityMineral()
         {
             Id = 4,
             FacilityId = 3,
             MineralId = 3,
-            Quantity = 868
+            Quantity = 868,
+            ProductionRate = 2
         }
 };
 
@@ -334,8 +338,24 @@ app.MapGet("/api/minerals", () =>
     });
 });
 
+app.MapPost("/api/facilityMinerals/simulate", () =>
+{
+    foreach (FacilityMineral fm in facilityMinerals)
+    {
+        fm.Quantity += fm.ProductionRate;
+    }
 
-
+    return Results.Ok(facilityMinerals.Select(fm => new FacilityMineralDTO
+    {
+        Id = fm.Id,
+        FacilityId = fm.FacilityId,
+        MineralId = fm.MineralId,
+        Quantity = fm.Quantity,
+        ProductionRate = fm.ProductionRate,
+        Mineral = minerals.FirstOrDefault(m => m.Id == fm.MineralId),
+        Facility = facilities.FirstOrDefault(f => f.Id == fm.FacilityId)
+    }));
+});
 
 
 app.Run();
